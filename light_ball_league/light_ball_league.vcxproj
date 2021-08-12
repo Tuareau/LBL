@@ -18,6 +18,19 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\league.cpp" />
+    <ClCompile Include="src\table.cpp" />
+    <ClCompile Include="src\team.cpp" />
+    <ClCompile Include="src\tournament.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\league.h" />
+    <ClInclude Include="src\season.h" />
+    <ClInclude Include="src\table.h" />
+    <ClInclude Include="src\team.h" />
+    <ClInclude Include="src\tournament.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{7C41FDF7-D39B-4AC8-B1A5-8715034E92D8}</ProjectGuid>
@@ -69,7 +82,12 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <SourcePath>C:\Users\pavma\source\repos\any_shit\LBL\light_ball_league\src;$(SourcePath)</SourcePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <SourcePath>C:\Users\pavma\source\repos\any_shit\LBL\light_ball_league\src;$(SourcePath)</SourcePath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -122,15 +140,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="league.h" />
-    <ClInclude Include="season.h" />
-    <ClInclude Include="tournament.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="league.cpp" />
-    <ClCompile Include="tournament.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

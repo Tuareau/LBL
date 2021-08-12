@@ -25,7 +25,6 @@ private:
 public:
 	Tournament() = delete;
 	Tournament(const Tournament &) = delete;
-	Tournament(Tournament &&) = delete;
 
 	virtual ~Tournament() {}
 

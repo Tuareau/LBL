@@ -10,16 +10,21 @@ enum class time_of_year { WINTER, SPRING, SUMMER, AUTUMN };
 class Season
 {
 private:
+	static size_t initial_year;
 	time_of_year season;
-	int year;
+	size_t year;
+
+	// goToNextSeason()
+	// 
 
 public:
 	Season() = delete;
 	Season(const Season &) = delete;
 	Season(Season &&) = delete;
 
-	Season(const time_of_year & season, const int year) {
+	Season(const time_of_year & season, const size_t year) {
 		this->season = season;
+		this->initial_year = year;
 		this->year = year;
 	}
 
