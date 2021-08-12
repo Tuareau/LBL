@@ -23,8 +23,14 @@ public:
 
 	virtual ~League() {};
 
-	League(size_t participants) {
-		
+	League(weak_ptr<Season> & season) : Tournament(season) {}
+
+	void set() override {
+		Tournament::set();
+		size_t participants{ Tournament::participants() };
+		table = make_unique<Table>(participants);
+		vector<string> teams_names = table->participants();
+		teams = make_unique<vector<Team>>(teams_names);
 	}
 
 	

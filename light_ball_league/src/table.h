@@ -19,8 +19,16 @@ public:
 
 	virtual ~Table() {}
 
-	Table(size_t participants) {
+	explicit Table(size_t participants) {
 
+	}
+
+	vector<string> participants() const {
+		vector<string> teams;
+		teams.reserve(table->size());
+		for (const auto & team_pos : *table)
+			teams.emplace_back(team_pos.name());
+		return teams;
 	}
 
 
@@ -57,5 +65,9 @@ public:
 	TablePosition(const TablePosition &) = delete;
 
 	~TablePosition() {}
+
+	const string name() const {
+		return { pos.team };
+	}
 	   	 	
 };

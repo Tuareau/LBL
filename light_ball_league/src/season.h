@@ -2,6 +2,10 @@
 
 #include <string>
 #include <sstream>
+#include <vector>
+#include <memory>
+
+#include "tournament.h"
 
 using namespace std;
 
@@ -14,16 +18,19 @@ private:
 	time_of_year season;
 	size_t year;
 
+	vector<shared_ptr<Tournament>> tournaments;
+
 	// goToNextSeason()
-	// 
+	// areTournamentsClosed()
+	// addTournament()
 
 public:
 	Season() = delete;
 	Season(const Season &) = delete;
 	Season(Season &&) = delete;
 
-	Season(const time_of_year & season, const size_t year) {
-		this->season = season;
+	Season(const size_t & year) {
+		this->season = time_of_year::WINTER;
 		this->initial_year = year;
 		this->year = year;
 	}
@@ -41,6 +48,10 @@ public:
 			return { "Summer " + year_str };
 		if (season == time_of_year::AUTUMN)
 			return { "Autumn " + year_str };
+	}
+
+	void set() {
+		// INPUT
 	}
 
 };
