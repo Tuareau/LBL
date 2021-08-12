@@ -49,4 +49,8 @@ public:
 		// INPUT
 	}
 
+	virtual bool is_actual() = 0 {
+		return information.is_actual;
+	}
+
 };

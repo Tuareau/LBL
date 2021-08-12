@@ -20,9 +20,11 @@ private:
 
 	vector<shared_ptr<Tournament>> tournaments;
 
-	// goToNextSeason()
-	// areTournamentsClosed()
-	// addTournament()
+	bool tournamentsClosed() const {
+		for (const auto t : tournaments)
+			if (t->is_actual())
+				return false;
+	}
 
 public:
 	Season() = delete;
@@ -52,6 +54,19 @@ public:
 
 	void set() {
 		// INPUT
+	}
+
+	void goToNextSeason() {
+		if (tournamentsClosed()) {
+			// go
+		}
+		else {
+			// continue this
+		}
+	}
+
+	void addNewTournament(shared_ptr<Tournament> t) {
+		tournaments.emplace_back(t);
 	}
 
 };
