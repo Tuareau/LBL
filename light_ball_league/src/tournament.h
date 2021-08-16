@@ -7,13 +7,12 @@ using namespace std;
 
 #include "season.h"
 
-enum class tournament_types { LEAGUE, GROUP, ELIMINATION };
+enum class tournament_type { LEAGUE, GROUP, ELIMINATION };
 
 struct tournament_info {
 	string name;
 	int participants;
-	//int foundation_year; // problem: one for the same names
-	tournament_types tournament_type;
+	tournament_type ttype;
 	bool is_actual;
 };
 
@@ -23,47 +22,23 @@ private:
 	tournament_info information;
 	weak_ptr<Season> season;
 
+protected:
+	void set_actual();
+
 public:
 	Tournament() = delete;
 	Tournament(const Tournament &) = delete;
 	virtual ~Tournament() {}
 
-	explicit Tournament(weak_ptr<Season> & season) {
-		this->season = season;
-		this->season.lock()->addNewTournament(shared_ptr<Tournament>(this));
-		this->set();
-		this->information.is_actual = true;
-	}
+	explicit Tournament(weak_ptr<Season> & season);
 
-	virtual const string name() const = 0 {
-		return information.name;
-	}
+	const string name() const;
+	const tournament_type type() const;
+	const size_t participants() const;
+	bool is_actual() const;
 
-	virtual const tournament_info info() const = 0 {
-		return information;
-	}
-
-	virtual const size_t participants() const = 0 {
-		return information.participants;
-	}
-
-	virtual void set() = 0 {
-		// INPUT
-		/*
-		- participants number
-		- type
-		- rounds
-		- other
-		*/
-	}
-
+	virtual void set() = 0;
 	virtual void fill() = 0;
-
-	virtual bool is_actual() = 0 {
-		return information.is_actual;
-	}
-
-	virtual void run() = 0 {
-		// events
-	}
+	virtual void init() = 0;
+	virtual void run() = 0;
 };
