@@ -22,73 +22,22 @@ private:
 
 	vector<shared_ptr<Tournament>> tournaments;
 
-	bool tournamentsClosed() const {
-		if (tournaments.empty())
-			return false; // maybe other action
-		for (const auto & t : tournaments)
-			if (t->is_actual())
-				return false;
-	}
+	bool tournamentsClosed() const;
 
 public:
 	Season() = delete;
 	Season(const Season &) = delete;
 	Season(Season &&) = delete;
 
-	Season(const size_t & init_year, const time_of_year init_season) {
-		this->initial_time_of_year = init_season;
-		this->curr_season = init_season;
-		this->initial_year = init_year;
-		this->curr_year = init_year;
-	}
+	Season(const size_t & init_year, const time_of_year init_season);
 
-	const string name() const {
-		stringstream sstream;
-		sstream << curr_year;
-		string year_str{ sstream.str() };
+	const string name() const;
 
-		if (curr_season == time_of_year::WINTER)
-			return { "Winter " + year_str };
-		if (curr_season == time_of_year::SPRING)
-			return { "Spring " + year_str };
-		if (curr_season == time_of_year::SUMMER)
-			return { "Summer " + year_str };
-		if (curr_season == time_of_year::AUTUMN)
-			return { "Autumn " + year_str };
-	}
+	void set();
 
-	void set() {
-		// INPUT
-	}
+	void goToNextSeason();
 
-	void goToNextSeason() {
-		if (tournamentsClosed()) {
-			/*
-			- all tournaments go to file
-			- increase year
-			- add to seasons list
-			*/
-		}
-		else {
-			// continue this
-		}
-	}
-
-	void addNewTournament(shared_ptr<Tournament> t) {
-		tournaments.emplace_back(t);
-	}
-
-	void deleteTournament(shared_ptr<Tournament> t) {
-		auto del{ remove_if(begin(tournaments), end(tournaments), 
-			[&t](auto & x) { return t->name() == x->name(); }) };
-	#ifndef OPTIMIZE
-		tournaments.erase(del, end(tournaments));
-	#else
-		if (del != end(tournaments)) {
-			*del = move(tournaments.back());
-			tournaments.pop_back();
-		}
-	#endif	
-	}
+	void addTournament(shared_ptr<Tournament> t);
+	void deleteTournament(shared_ptr<Tournament> t);
 
 };
