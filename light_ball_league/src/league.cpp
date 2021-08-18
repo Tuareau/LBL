@@ -24,12 +24,23 @@ void League::fill() {
 }
 
 void League::init() {
+
 	// rand
+	RandStrategy * league_scheduler = new LeagueRandomizer;
+
+	this->randomizer = new RandManager(league_scheduler);
+
 	// shedule
+	this->shedule = this->randomizer->createSchedule(this->teams);
+
 	// table
+	this->table = new Table(this->participants());
 }
 
 void League::run() {
 	// play next matchday
+	// shedule.playNext();
+
 	// syncronize the table
+	// shedule.sendToTable();
 }

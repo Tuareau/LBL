@@ -13,6 +13,7 @@ int main()
 	// set initial season
 	size_t init_year = 2016; // INPUT
 	time_of_year init_season = time_of_year::SUMMER; // INPUT
+
 	auto season = make_unique<Season>(init_year, init_season);
 
 	// create tournament

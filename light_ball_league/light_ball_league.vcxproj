@@ -28,6 +28,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\league.h" />
+    <ClInclude Include="src\randmanager.h" />
+    <ClInclude Include="src\randstrategy.h" />
     <ClInclude Include="src\season.h" />
     <ClInclude Include="src\table.h" />
     <ClInclude Include="src\team.h" />
