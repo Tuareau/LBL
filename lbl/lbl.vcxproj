@@ -37,9 +37,10 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{7C41FDF7-D39B-4AC8-B1A5-8715034E92D8}</ProjectGuid>
+    <ProjectGuid>{5DF19CE5-0AA7-4FF3-A7EC-42E308A05B95}</ProjectGuid>
     <RootNamespace>lightballleague</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+    <ProjectName>lbl</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
