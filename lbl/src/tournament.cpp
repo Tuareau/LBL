@@ -4,7 +4,7 @@ Tournament::Tournament(weak_ptr<Season> & season) {
 	this->season = season;
 	this->season.lock()->addTournament(shared_ptr<Tournament>(this));
 	this->set();
-	// this->information.is_actual = true;
+	this->information.is_actual = false;
 }
 
 const string Tournament::name() const {
@@ -23,26 +23,13 @@ bool Tournament::is_actual() const {
 	return information.is_actual;
 }
 
-void Tournament::set_actual() {
-	information.is_actual = true;
+void Tournament::set_actual(bool is_actual) {
+	information.is_actual = is_actual;
 }
 
-void Tournament::set() {
-	// INPUT
-	/*
-	- participants number
-	- type
-	- name
-	- is_actual
-	*/
+void Tournament::set() { // INPUT
 	information.name = string{ "LBL" };
 	information.participants = 8;
 	information.ttype = tournament_type::LEAGUE;
 	information.is_actual = false; // !!!
-
-}
-
-void Tournament::fill() {
-	// filling
-	set_actual();
 }

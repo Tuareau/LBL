@@ -1,6 +1,8 @@
 #include "league.h"
 
 #include <sstream>
+#include <random>
+#include <algorithm>
 
 void League::set() {
 	Tournament::set();
@@ -19,28 +21,30 @@ void League::fill() {
 		sstr.clear();
 		default_name.clear();
 	}
-
 	Tournament::set_actual();
 }
 
 void League::init() {
 
-	// rand
-	RandStrategy * league_scheduler = new LeagueRandomizer;
-
-	this->randomizer = new RandManager(league_scheduler);
-
-	// shedule
-	this->shedule = this->randomizer->createSchedule(this->teams);
-
-	// table
-	this->table = new Table(this->participants());
+	this->shuffleTeams();
+	this->shedule = new LeagueSchedule(this->teams);
+	this->table = new LeagueTable(this->teams);
 }
 
-void League::run() {
-	// play next matchday
-	// shedule.playNext();
+void League::shuffleTeams()
+{
+	random_device rd;
+	mt19937 g(rd());
+	shuffle(begin(teams), end(teams), g);
+}
 
-	// syncronize the table
-	// shedule.sendToTable();
+void League::runMatchday() {
+
+	if (!this->shedule->isCompleted()) {
+		matchday curr_mday{ this->shedule->playMatchday() };
+		this->table->handleMatchday(curr_mday);
+	}
+	else {
+		Tournament::set_actual(false);
+	}
 }

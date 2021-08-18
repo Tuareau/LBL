@@ -4,35 +4,59 @@
 #include <vector>
 #include <string>
 
-using namespace std;
+#include "schedule.h"
 
-class TablePosition;
+using namespace std;
 
 class Table
 {
-private:
-	unique_ptr<vector<TablePosition>> table;
-
 public:
-	Table() = delete;
+	Table() = default;
 	Table(const Table &) = delete;
-
 	virtual ~Table() {}
 
-	explicit Table(size_t participants) {
+	virtual void handleMatchday(matchday &) = 0;
+};
 
-	}
+class LeagueTable : public Table
+{
+private:
+	vector<TablePosition> table;
 
-	vector<string> participants() const {
-		vector<string> teams;
-		teams.reserve(table->size());
-		for (const auto & team_pos : *table)
-			teams.emplace_back(team_pos.name());
-		return teams;
-	}
+public:
+	LeagueTable() = delete;
+	LeagueTable(const Table &) = delete;
+	virtual ~LeagueTable() {}
+
+	explicit LeagueTable(std::vector<std::string>);
+
+	void handleMatchday(matchday &) override;
+};
 
 
+class TablePosition {
+private:
+	table_pos_info pos;
 
+public:
+	TablePosition() = delete;
+	TablePosition(const TablePosition &) = delete;
+	~TablePosition() {}
+
+	explicit TablePosition(std::tuple<string, string, size_t> &);
+
+	const string name() const;
+};
+
+// enum class result { WIN, DEFEAT, DRAW };
+
+struct table_pos_info {
+	size_t position;
+	string division;
+	string team;
+	game_stats games;
+	goal_stats goals;
+	size_t points;
 };
 
 struct game_stats {
@@ -45,29 +69,4 @@ struct goal_stats {
 	size_t scored;
 	size_t missed;
 	int diff;
-};
-
-struct table_pos_info {
-	size_t position;
-	string division;
-	string team;
-	game_stats games;
-	goal_stats goals;
-	size_t points;
-};
-
-class TablePosition {
-private:
-	table_pos_info pos;
-
-public:
-	TablePosition() = delete;
-	TablePosition(const TablePosition &) = delete;
-
-	~TablePosition() {}
-
-	const string name() const {
-		return { pos.team };
-	}
-	   	 	
 };

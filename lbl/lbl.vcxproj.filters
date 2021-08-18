@@ -33,6 +33,9 @@
     <ClCompile Include="src\season.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="src\schedule.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\league.h">
@@ -50,10 +53,7 @@
     <ClInclude Include="src\tournament.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="src\randmanager.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="src\randstrategy.h">
+    <ClInclude Include="src\schedule.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

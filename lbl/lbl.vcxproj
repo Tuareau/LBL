@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="src\league.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\schedule.cpp" />
     <ClCompile Include="src\season.cpp" />
     <ClCompile Include="src\table.cpp" />
     <ClCompile Include="src\team.cpp" />
@@ -28,9 +29,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\league.h" />
-    <ClInclude Include="src\randmanager.h" />
-    <ClInclude Include="src\randstrategy.h" />
     <ClInclude Include="src\season.h" />
+    <ClInclude Include="src\schedule.h" />
     <ClInclude Include="src\table.h" />
     <ClInclude Include="src\team.h" />
     <ClInclude Include="src\tournament.h" />

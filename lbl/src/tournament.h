@@ -23,11 +23,10 @@ private:
 	weak_ptr<Season> season;
 
 protected:
-	void set_actual();
+	void set_actual(bool);
 
 public:
 	Tournament() = delete;
-	Tournament(const Tournament &) = delete;
 	virtual ~Tournament() {}
 
 	explicit Tournament(weak_ptr<Season> & season);
@@ -40,5 +39,6 @@ public:
 	virtual void set() = 0;
 	virtual void fill() = 0;
 	virtual void init() = 0;
-	virtual void run() = 0;
+
+	virtual void runMatchday() = 0;
 };
