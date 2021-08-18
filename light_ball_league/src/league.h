@@ -3,6 +3,7 @@
 #include "tournament.h"
 #include "team.h"
 #include "table.h"
+#include "randmanager.h"
 
 #include <string>
 #include <sstream>
@@ -12,7 +13,6 @@
 using namespace std;
 
 class Shedule;
-class RandManager;
 
 class League : public Tournament
 {

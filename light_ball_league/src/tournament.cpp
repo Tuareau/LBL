@@ -35,8 +35,8 @@ void Tournament::set() {
 	- name
 	- is_actual
 	*/
-	information.name = move(string{ "LBL" });
-	information.participants = 16;
+	information.name = string{ "LBL" };
+	information.participants = 8;
 	information.ttype = tournament_type::LEAGUE;
 	information.is_actual = false; // !!!
 
