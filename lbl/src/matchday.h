@@ -6,6 +6,9 @@
 #include <random>
 #include <algorithm>
 
+#define POINTS_PER_WIN 3
+#define POINTS_PER_DRAW 1
+
 using namespace std;
 
 using match = tuple<string, size_t, string, size_t>;
@@ -17,7 +20,7 @@ private:
 	bool is_completed;
 
 public:
-	MatchDay() = default;
+	MatchDay() : is_completed(true) {}
 	MatchDay(const MatchDay &) = delete;
 	~MatchDay() {}
 
@@ -54,6 +57,10 @@ public:
 			cout << endl;
 		}
 		is_completed = true;
+	}
+
+	const vector<match> & getMatches() const {
+		return matches;
 	}
 
 };

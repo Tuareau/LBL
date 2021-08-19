@@ -18,6 +18,7 @@ public:
 
 	virtual const MatchDay & playMatchday() = 0;
 	virtual bool isCompleted() const = 0;
+	virtual void draw() const = 0;
 };
 
 class LeagueSchedule : public Schedule
@@ -36,4 +37,5 @@ public:
 
 	virtual const MatchDay & playMatchday() override;
 	virtual bool isCompleted() const override;
+	virtual void draw() const override;
 };

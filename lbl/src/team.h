@@ -4,24 +4,28 @@
 
 using namespace std;
 
-struct team_game_stats {
+struct game_stats {
 	size_t wins;
 	size_t defeats;
 	size_t draws;
 };
 
-struct team_goal_stats {
+struct goal_stats {
 	size_t scored;
 	size_t missed;
 	int diff;
 };
 
 struct team_info {
-	size_t trophies;
 	string division;
-	string team;
-	team_game_stats games;
-	team_goal_stats goals;
+	string name;
+	game_stats games;
+	goal_stats goals;
+	// increased_team_info * addition;
+};
+
+struct increased_team_info {
+	size_t trophies;
 	double rating;
 };
 
@@ -33,10 +37,5 @@ private:
 public:
 	Team() = delete;
 	Team(const Team &) = delete;
-
-	~Team() {}
-
-	const string name() const {
-		return info.team;
-	}
+	~Team() = default;
 };

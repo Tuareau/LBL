@@ -24,7 +24,6 @@
     <ClCompile Include="src\schedule.cpp" />
     <ClCompile Include="src\season.cpp" />
     <ClCompile Include="src\table.cpp" />
-    <ClCompile Include="src\team.cpp" />
     <ClCompile Include="src\tournament.cpp" />
   </ItemGroup>
   <ItemGroup>

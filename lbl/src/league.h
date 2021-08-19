@@ -1,7 +1,6 @@
 #pragma once
 
 #include "tournament.h"
-#include "team.h"
 #include "table.h"
 #include "schedule.h"
 
@@ -11,6 +10,8 @@
 #include <vector>
 
 using namespace std;
+
+#define WIN_POINTS 3
 
 class League : public Tournament
 {
@@ -32,5 +33,7 @@ public:
 	void init() override;
 	
 	void runMatchday() override;
+	void showSchedule() const;
+	void showTable() const;
 
 };

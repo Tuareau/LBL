@@ -65,3 +65,7 @@ bool LeagueSchedule::isCompleted() const
 		if (!m.isCompleted()) return false;
 	return true;
 }
+
+void LeagueSchedule::draw() const
+{
+}

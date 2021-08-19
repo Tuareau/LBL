@@ -21,7 +21,6 @@ void League::fill() {
 		sstr.clear();
 		default_name.clear();
 	}
-	Tournament::set_actual(true);
 }
 
 void League::init() {
@@ -40,11 +39,23 @@ void League::shuffleTeams()
 
 void League::runMatchday() {
 
-	if (!this->shedule->isCompleted()) {
-		MatchDay curr_mday{ this->shedule->playMatchday() };
-		this->table->handleMatchday(curr_mday);
+	if (!shedule->isCompleted()) {
+		const MatchDay & curr_mday{ shedule->playMatchday() };
+		table->handleMatchday(curr_mday);
 	}
 	else {
 		Tournament::set_actual(false);
 	}
 }
+
+void League::showSchedule() const
+{
+	shedule->draw();
+}
+
+void League::showTable() const
+{
+	table->draw();
+}
+
+

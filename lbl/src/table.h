@@ -4,7 +4,8 @@
 #include <vector>
 #include <string>
 
-#include "schedule.h"
+#include "matchday.h"
+#include "team.h"
 
 using namespace std;
 
@@ -15,7 +16,8 @@ public:
 	Table(const Table &) = delete;
 	virtual ~Table() {}
 
-	virtual void handleMatchday(MatchDay &) = 0;
+	virtual void handleMatchday(const MatchDay &) = 0;
+	virtual void draw() const = 0;
 };
 
 class LeagueTable : public Table
@@ -28,45 +30,33 @@ public:
 	LeagueTable(const Table &) = delete;
 	virtual ~LeagueTable() {}
 
-	explicit LeagueTable(std::vector<std::string>);
+	explicit LeagueTable(std::vector<std::string> &);
 
-	void handleMatchday(MatchDay &) override;
+	void handleMatchday(const MatchDay &) override;
+	virtual void draw() const override;
 };
 
+struct pos_info {
+	size_t points;
+	size_t position;
+};
 
 class TablePosition {
 private:
-	table_pos_info pos;
+	team_info team;
+	pos_info pos;
 
 public:
 	TablePosition() = delete;
 	TablePosition(const TablePosition &) = delete;
 	~TablePosition() {}
 
-	explicit TablePosition(std::tuple<string, string, size_t> &);
+	explicit TablePosition(const std::tuple<string, string, size_t> &);
 
-	const string name() const;
-};
+	constexpr auto points() const {
+		return pos.points;
+	}
 
-// enum class result { WIN, DEFEAT, DRAW };
-
-struct table_pos_info {
-	size_t position;
-	string division;
-	string team;
-	game_stats games;
-	goal_stats goals;
-	size_t points;
-};
-
-struct game_stats {
-	size_t wins;
-	size_t defeats;
-	size_t draws;
-};
-
-struct goal_stats {
-	size_t scored;
-	size_t missed;
-	int diff;
+	enum class game_result { WIN, DEFEAT, DRAW };
+	void addMatchResult(game_result, size_t, size_t);
 };
