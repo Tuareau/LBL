@@ -5,6 +5,7 @@
 #include <vector>
 #include <random>
 #include <algorithm>
+#include <iomanip>
 
 #define POINTS_PER_WIN 3
 #define POINTS_PER_DRAW 1
@@ -21,7 +22,7 @@ private:
 
 public:
 	MatchDay() : is_completed(true) {}
-	MatchDay(const MatchDay &) = delete;
+	MatchDay(const MatchDay &) = default;
 	~MatchDay() {}
 
 	explicit MatchDay(size_t matches_count) {

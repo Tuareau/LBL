@@ -12,15 +12,14 @@ int main()
 	size_t init_year = 2016; // INPUT
 	time_of_year init_season = time_of_year::SUMMER; // INPUT
 
-	auto season = make_unique<Season>(init_year, init_season);
+	auto season = new Season(init_year, init_season);
 
-	auto LBL = make_unique<League>(season);
+	auto LBL = new League(season);
 	LBL->set();
 	LBL->fill();
 	LBL->init();
 	
 	while (LBL->is_actual()) {
-		system("cls");
 		cout << "\nChoice:\n";
 		cout << "1 - Shedule:\n";
 		cout << "2 - Table:\n";
@@ -29,8 +28,10 @@ int main()
 		int c;
 		cin >> c;
 
+		system("cls");
+
 		if (c == 1) {
-			LBL->showShedule();
+			LBL->showSchedule();
 		}
 		if (c == 2) {
 			LBL->showTable();

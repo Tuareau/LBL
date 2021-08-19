@@ -33,8 +33,12 @@ void LeagueTable::handleMatchday(const MatchDay & mday)
 	for (const auto & m : mday.getMatches()) {
 		const auto & [team1, score1, team2, score2] = m;
 
-		auto pos1{ find(table.begin(), table.end(), team1) };
-		auto pos2{ find(table.begin(), table.end(), team2) };
+		auto pos1 { find_if(table.begin(), table.end(), 
+			[&team1](const auto & pos) { return pos.name() == team1; })
+		};
+		auto pos2{ find_if(table.begin(), table.end(),
+			[&team2](const auto & pos) { return pos.name() == team2; })
+		};
 
 		pos1->addMatchResult(result(score1, score2), score1, score2);
 		pos2->addMatchResult(result(score2, score1), score2, score1);
@@ -63,4 +67,19 @@ void TablePosition::addMatchResult(game_result res, size_t scored, size_t missed
 
 void LeagueTable::draw() const
 {
+	cout << setw(37) << "\nLEAGUE TABLE\n";
+	cout << setw(3) << "#" << setw(10) << "TEAM";
+	cout << setw(3) << "W" << setw(3) << "L" << setw(3) << "D";
+	cout << setw(3) << "GS" << setw(3) << "GM" << setw(3) << "DF" << setw(3) << "PT" << endl;
+
+	for (const auto & pos : table) pos.draw();
+}
+
+void TablePosition::draw() const
+{
+	cout << setw(3) << pos.position << setw(10) << team.name;
+	cout << setw(3) << team.games.wins << setw(3) 
+		<< team.games.draws << setw(3) << team.games.defeats;
+	cout << setw(3) << team.goals.scored << setw(3) << team.goals.missed 
+		<< setw(3) << team.goals.diff << setw(3) << pos.points << endl;
 }

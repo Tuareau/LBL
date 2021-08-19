@@ -1,8 +1,8 @@
 #pragma once
 
-#include <memory>
 #include <vector>
 #include <string>
+#include <iostream>
 
 #include "matchday.h"
 #include "team.h"
@@ -19,6 +19,8 @@ public:
 	virtual void handleMatchday(const MatchDay &) = 0;
 	virtual void draw() const = 0;
 };
+
+class TablePosition;
 
 class LeagueTable : public Table
 {
@@ -48,7 +50,7 @@ private:
 
 public:
 	TablePosition() = delete;
-	TablePosition(const TablePosition &) = delete;
+	TablePosition(const TablePosition &) = default;
 	~TablePosition() {}
 
 	explicit TablePosition(const std::tuple<string, string, size_t> &);
@@ -56,6 +58,11 @@ public:
 	constexpr auto points() const {
 		return pos.points;
 	}
+	auto name() const {
+		return team.name;
+	}
+
+	void draw() const;
 
 	enum class game_result { WIN, DEFEAT, DRAW };
 	void addMatchResult(game_result, size_t, size_t);

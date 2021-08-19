@@ -26,11 +26,11 @@ void Season::set() {
 	// INPUT
 }
 
-void Season::addTournament(shared_ptr<Tournament> t) {
+void Season::addTournament(Tournament * t) {
 	tournaments.emplace_back(t);
 }
 
-void Season::deleteTournament(shared_ptr<Tournament> t) {
+void Season::deleteTournament(Tournament * t) {
 	auto del{ remove_if(begin(tournaments), end(tournaments),
 		[&t](auto & x) { return t->name() == x->name(); }) };
 #ifndef OPTIMIZE

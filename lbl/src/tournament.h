@@ -1,7 +1,6 @@
 #pragma once
 
 #include <string>
-#include <memory>
 
 using namespace std;
 
@@ -16,11 +15,13 @@ struct tournament_info {
 	bool is_actual;
 };
 
+class Season;
+
 class Tournament
 {
 private:
 	tournament_info information;
-	weak_ptr<Season> season;
+	Season * season;
 
 protected:
 	void set_actual(bool);
@@ -29,7 +30,7 @@ public:
 	Tournament() = delete;
 	virtual ~Tournament() {}
 
-	explicit Tournament(weak_ptr<Season> & season);
+	explicit Tournament(Season * season);
 
 	const string name() const;
 	const tournament_type type() const;

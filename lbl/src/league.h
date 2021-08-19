@@ -6,7 +6,6 @@
 
 #include <string>
 #include <sstream>
-#include <memory>
 #include <vector>
 
 using namespace std;
@@ -26,7 +25,7 @@ public:
 	League(const League &) = delete;
 	virtual ~League() {};
 
-	explicit League(weak_ptr<Season> & season) : Tournament(season) {}
+	explicit League(Season * season) : Tournament(season) {}
 
 	void set() override;
 	void fill() override;

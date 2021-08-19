@@ -1,8 +1,8 @@
 #include "tournament.h"
 
-Tournament::Tournament(weak_ptr<Season> & season) {
+Tournament::Tournament(Season * season) {
 	this->season = season;
-	this->season.lock()->addTournament(shared_ptr<Tournament>(this));
+	this->season->addTournament(this);
 	this->set();
 }
 
@@ -28,7 +28,7 @@ void Tournament::set_actual(bool is_actual) {
 
 void Tournament::set() { // INPUT
 	information.name = string{ "LBL" };
-	information.participants = 8;
+	information.participants = 4;
 	information.ttype = tournament_type::LEAGUE;
 	information.is_actual = true;
 }

@@ -16,9 +16,9 @@ void League::fill() {
 	string default_name;
 	for (auto i = size_t(0); i < n; i++) { // INPUT
 		sstr << "Team #" << i + 1;
-		sstr >> default_name;
+		default_name = sstr.str();
 		this->teams.push_back(default_name);
-		sstr.clear();
+		sstr.str(std::string());
 		default_name.clear();
 	}
 }

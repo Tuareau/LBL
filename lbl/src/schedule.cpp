@@ -15,7 +15,6 @@ void LeagueSchedule::makeEmptyShedule(vector<string> & teams)
 	const auto ROUNDS{ teams.size() - 1 };
 	const auto MATCHES{ teams.size() / 2 };
 
-	// round robin
 	for (size_t i = 0; i < ROUNDS; ++i) {
 		MatchDay mday(MATCHES);
 		for (size_t curr = 0; curr < MATCHES; ++curr) {
@@ -37,8 +36,8 @@ void LeagueSchedule::shuffleMatches()
 template <typename T>
 void move_from_end_at(std::vector<T> &v, typename std::vector<T>::iterator it)
 {
-	if (it != std::end(v)) {
-		v.insert(it, std::move(v.back());
+	if (it != end(v)) {
+		v.insert(it, move(v.back()));
 		v.pop_back();
 	}
 }
@@ -56,7 +55,7 @@ const MatchDay & LeagueSchedule::playMatchday()
 		curr_matchday->play();
 		return *curr_matchday;
 	}
-	else return MatchDay();
+	else return *matchdays.begin();
 }
 
 bool LeagueSchedule::isCompleted() const
@@ -68,4 +67,16 @@ bool LeagueSchedule::isCompleted() const
 
 void LeagueSchedule::draw() const
 {
+	auto i = size_t(0);
+	for (const auto & m : matchdays) {
+		cout << setw(15) << "\nMATCHDAY #" << ++i << endl;
+		const auto & matches{ m.getMatches() };
+		for (const auto & match : matches) {
+			cout << setw(12) << get<0>(match);
+			cout << setw(3) << get<1>(match);
+			cout << setw(3) << " : ";
+			cout << get<3>(match);
+			cout << setw(12) << get<2>(match) << endl;
+		}
+	}
 }
