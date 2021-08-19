@@ -46,6 +46,15 @@ void LeagueTable::handleMatchday(const MatchDay & mday)
 
 	sort(table.begin(), table.end(), 
 		[](const auto & lhs, const auto & rhs) {return lhs.points() > rhs.points(); });
+
+	rewritePositions();
+}
+
+void LeagueTable::rewritePositions()
+{
+	auto n = size_t(0);
+	for (auto & pos : table)
+		pos.rewritePosition(++n);
 }
 
 void TablePosition::addMatchResult(game_result res, size_t scored, size_t missed)

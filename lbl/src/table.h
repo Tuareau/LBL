@@ -27,6 +27,7 @@ class LeagueTable : public Table
 private:
 	vector<TablePosition> table;
 
+	void rewritePositions();
 public:
 	LeagueTable() = delete;
 	LeagueTable(const Table &) = delete;
@@ -60,6 +61,9 @@ public:
 	}
 	auto name() const {
 		return team.name;
+	}
+	void rewritePosition(size_t new_pos) {
+		pos.position = new_pos;
 	}
 
 	void draw() const;
