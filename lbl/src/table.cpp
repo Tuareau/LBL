@@ -20,7 +20,7 @@ LeagueTable::LeagueTable(std::vector<std::string> teams)
 	}
 }
 
-void LeagueTable::handleMatchday(matchday & mday)
+void LeagueTable::handleMatchday(MatchDay & mday)
 {
 
 }

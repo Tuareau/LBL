@@ -21,7 +21,7 @@ void League::fill() {
 		sstr.clear();
 		default_name.clear();
 	}
-	Tournament::set_actual();
+	Tournament::set_actual(true);
 }
 
 void League::init() {
@@ -41,7 +41,7 @@ void League::shuffleTeams()
 void League::runMatchday() {
 
 	if (!this->shedule->isCompleted()) {
-		matchday curr_mday{ this->shedule->playMatchday() };
+		MatchDay curr_mday{ this->shedule->playMatchday() };
 		this->table->handleMatchday(curr_mday);
 	}
 	else {

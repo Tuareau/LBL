@@ -31,7 +31,5 @@ int main()
 	// jump season
 
 
-
-
 	return 0;
 }

@@ -15,7 +15,7 @@ public:
 	Table(const Table &) = delete;
 	virtual ~Table() {}
 
-	virtual void handleMatchday(matchday &) = 0;
+	virtual void handleMatchday(MatchDay &) = 0;
 };
 
 class LeagueTable : public Table
@@ -30,7 +30,7 @@ public:
 
 	explicit LeagueTable(std::vector<std::string>);
 
-	void handleMatchday(matchday &) override;
+	void handleMatchday(MatchDay &) override;
 };
 
 

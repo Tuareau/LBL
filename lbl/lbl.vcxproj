@@ -29,6 +29,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\league.h" />
+    <ClInclude Include="src\matchday.h" />
     <ClInclude Include="src\season.h" />
     <ClInclude Include="src\schedule.h" />
     <ClInclude Include="src\table.h" />
