@@ -15,7 +15,7 @@ LeagueTable::LeagueTable(std::vector<std::string> & teams)
 	auto i = 0;
 	table.reserve(n);
 	for (auto & team : teams) {
-		auto info{ make_tuple(string("division"), team, ++i) };
+		auto info{ make_tuple(string("#division"), team, ++i) };
 		table.emplace_back(info);
 	}
 }
@@ -53,8 +53,10 @@ void LeagueTable::handleMatchday(const MatchDay & mday)
 void LeagueTable::rewritePositions()
 {
 	auto n = size_t(0);
-	for (auto & pos : table)
-		pos.rewritePosition(++n);
+	for (auto & pos : table) {
+		if (pos.name() != BYE_TEAM)
+			pos.rewritePosition(++n);
+	}
 }
 
 void TablePosition::addMatchResult(game_result res, size_t scored, size_t missed)
@@ -81,7 +83,8 @@ void LeagueTable::draw() const
 	cout << setw(4) << "W" << setw(4) << "L" << setw(4) << "D";
 	cout << setw(4) << "GS" << setw(4) << "GM" << setw(4) << "DF" << setw(4) << "PT" << endl;
 
-	for (const auto & pos : table) pos.draw();
+	for (const auto & pos : table) 
+		if (pos.name() != BYE_TEAM) pos.draw();
 }
 
 void TablePosition::draw() const

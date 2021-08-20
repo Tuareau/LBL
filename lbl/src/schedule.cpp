@@ -13,13 +13,13 @@ void Schedule::setCompleted()
 LeagueSchedule::LeagueSchedule(vector<string> & teams, size_t legs)
 {
 	this->legs = legs;
-	makeEmptyShedule(teams);
+	setEmptyShedule(teams);
 	//shuffleMatches();
 }
 
-void LeagueSchedule::makeEmptyShedule(vector<string> & teams)
+void LeagueSchedule::setEmptyShedule(vector<string> & teams)
 {
-	if (teams.size() % 2 != 0) teams.emplace_back("#bye");
+	if (teams.size() % 2 != 0) teams.emplace_back(BYE_TEAM);
 	const auto ROUNDS_PER_LEG{ (teams.size() - 1) };
 	this->actual_matchdays_num = ROUNDS_PER_LEG * legs;
 	const auto MATCHES_PER_LEG{ teams.size() / 2 };
@@ -28,7 +28,9 @@ void LeagueSchedule::makeEmptyShedule(vector<string> & teams)
 		mt_shuffle(begin(teams), end(teams));
 		for (size_t i = 0; i < ROUNDS_PER_LEG; ++i) {
 			MatchDay mday(MATCHES_PER_LEG);
-			for (size_t curr = 0; curr < MATCHES_PER_LEG; ++curr) {
+			for (size_t curr = 0; curr < MATCHES_PER_LEG; ++curr) { // #bye del
+				if (teams[curr] == BYE_TEAM || teams[curr + MATCHES_PER_LEG] == BYE_TEAM)
+					continue;
 				match m{ make_tuple(teams[curr], 0, teams[curr + MATCHES_PER_LEG], 0) };
 				mday.addMatch(m);
 			}

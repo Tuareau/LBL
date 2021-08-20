@@ -34,7 +34,7 @@ private:
 	size_t actual_matchdays_num;
 	size_t legs;
 
-	void makeEmptyShedule(vector<string> &);
+	void setEmptyShedule(vector<string> &);
 	void shuffleMatches();
 public:
 	LeagueSchedule() = delete;

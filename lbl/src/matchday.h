@@ -11,6 +11,7 @@
 
 #define POINTS_PER_WIN 3
 #define POINTS_PER_DRAW 1
+#define BYE_TEAM "#bye"
 
 using namespace std;
 

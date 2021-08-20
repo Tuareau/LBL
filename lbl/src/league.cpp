@@ -2,7 +2,7 @@
 
 void League::set() {
 	Tournament::set();
-	legs = 2; // INPUT 
+	legs = 3; // INPUT 
 }
 
 void League::fill() {
@@ -21,9 +21,8 @@ void League::fill() {
 }
 
 void League::init() {
-
-	this->schedule = new LeagueSchedule(this->teams, this->legs);
 	this->table = new LeagueTable(this->teams);
+	this->schedule = new LeagueSchedule(this->teams, this->legs);
 }
 
 void League::runMatchday() {
