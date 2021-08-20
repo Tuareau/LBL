@@ -33,6 +33,7 @@
     <ClInclude Include="src\schedule.h" />
     <ClInclude Include="src\table.h" />
     <ClInclude Include="src\team.h" />
+    <ClInclude Include="src\tools.h" />
     <ClInclude Include="src\tournament.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

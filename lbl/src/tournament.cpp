@@ -28,7 +28,7 @@ void Tournament::set_actual(bool is_actual) {
 
 void Tournament::set() { // INPUT
 	information.name = string{ "LBL" };
-	information.participants = 10;
+	information.participants = 4;
 	information.ttype = tournament_type::LEAGUE;
 	information.is_actual = true;
 }

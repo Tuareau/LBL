@@ -1,29 +1,41 @@
 #include "schedule.h"
 
-template <typename T>
-void move_from_end_at(std::vector<T> &v, typename std::vector<T>::iterator it);
-
-LeagueSchedule::LeagueSchedule(std::vector<std::string> & teams)
+bool Schedule::isCompleted() const
 {
+	return is_completed;
+}
+
+void Schedule::setCompleted() 
+{
+	is_completed = true;
+}
+
+LeagueSchedule::LeagueSchedule(vector<string> & teams, size_t legs)
+{
+	this->legs = legs;
 	makeEmptyShedule(teams);
-	shuffleMatches();
+	//shuffleMatches();
 }
 
 void LeagueSchedule::makeEmptyShedule(vector<string> & teams)
 {
 	if (teams.size() % 2 != 0) teams.emplace_back("#bye");
-	const auto ROUNDS{ teams.size() - 1 };
-	const auto MATCHES{ teams.size() / 2 };
+	const auto ROUNDS_PER_LEG{ (teams.size() - 1) };
+	this->actual_matchdays_num = ROUNDS_PER_LEG * legs;
+	const auto MATCHES_PER_LEG{ teams.size() / 2 };
 
-	for (size_t i = 0; i < ROUNDS; ++i) {
-		MatchDay mday(MATCHES);
-		for (size_t curr = 0; curr < MATCHES; ++curr) {
-			match m{ make_tuple(teams[curr], 0, teams[curr + MATCHES], 0) };
-			mday.addMatch(m);
+	for (size_t n = 0; n < legs; ++n) {
+		mt_shuffle(begin(teams), end(teams));
+		for (size_t i = 0; i < ROUNDS_PER_LEG; ++i) {
+			MatchDay mday(MATCHES_PER_LEG);
+			for (size_t curr = 0; curr < MATCHES_PER_LEG; ++curr) {
+				match m{ make_tuple(teams[curr], 0, teams[curr + MATCHES_PER_LEG], 0) };
+				mday.addMatch(m);
+			}
+			matchdays.push_back(mday);
+			auto second_team{ next(begin(teams)) };
+			move_from_end_at(teams, second_team);
 		}
-		matchdays.push_back(mday);
-		auto second_team{ next(begin(teams)) };
-		move_from_end_at(teams, second_team);
 	}
 }
 
@@ -31,15 +43,6 @@ void LeagueSchedule::shuffleMatches()
 {
 	for (auto & x : matchdays)
 		x.shuffleMatches();
-}
-
-template <typename T>
-void move_from_end_at(std::vector<T> &v, typename std::vector<T>::iterator it)
-{
-	if (it != end(v)) {
-		v.insert(it, move(v.back()));
-		v.pop_back();
-	}
 }
 
 const MatchDay & LeagueSchedule::playMatchday()
@@ -53,22 +56,21 @@ const MatchDay & LeagueSchedule::playMatchday()
 
 	if (curr_matchday != matchdays.end()) {
 		curr_matchday->play();
+		if (--actual_matchdays_num == 0) Schedule::setCompleted();
 		return *curr_matchday;
 	}
 	else return *matchdays.begin();
 }
 
-bool LeagueSchedule::isCompleted() const
-{
-	for (const auto & m : matchdays)
-		if (!m.isCompleted()) return false;
-	return true;
-}
-
 void LeagueSchedule::draw() const
 {
-	auto i = size_t(0);
+	auto i = size_t(0);	
+	auto leg_counter = i;
+	auto matchdays_per_leg { matchdays.size() / legs };
+
 	for (const auto & m : matchdays) {
+		if (!i || i % matchdays_per_leg == 0)
+			cout << setw(15) << "\nLEG #" << ++leg_counter << endl;
 		cout << setw(15) << "\nMATCHDAY #" << ++i << endl;
 		const auto & matches{ m.getMatches() };
 		for (const auto & match : matches) {

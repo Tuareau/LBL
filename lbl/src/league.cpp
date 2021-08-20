@@ -1,11 +1,8 @@
 #include "league.h"
 
-#include <sstream>
-#include <random>
-#include <algorithm>
-
 void League::set() {
 	Tournament::set();
+	legs = 2; // INPUT 
 }
 
 void League::fill() {
@@ -25,37 +22,23 @@ void League::fill() {
 
 void League::init() {
 
-	this->shuffleTeams();
-	this->shedule = new LeagueSchedule(this->teams);
+	this->schedule = new LeagueSchedule(this->teams, this->legs);
 	this->table = new LeagueTable(this->teams);
 }
 
-void League::shuffleTeams()
-{
-	random_device rd;
-	mt19937 g(rd());
-	shuffle(begin(teams), end(teams), g);
-}
-
 void League::runMatchday() {
-
-	if (!shedule->isCompleted()) {
-		const MatchDay & curr_mday{ shedule->playMatchday() };
-		table->handleMatchday(curr_mday);
-	}
-	else {
+	const MatchDay & curr_mday{ schedule->playMatchday() };
+	table->handleMatchday(curr_mday);
+	if (schedule->isCompleted())
 		Tournament::set_actual(false);
-	}
 }
 
 void League::showSchedule() const
 {
-	shedule->draw();
+	schedule->draw();
 }
 
 void League::showTable() const
 {
 	table->draw();
 }
-
-

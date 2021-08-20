@@ -7,6 +7,8 @@
 #include <algorithm>
 #include <iomanip>
 
+#include "tools.h"
+
 #define POINTS_PER_WIN 3
 #define POINTS_PER_DRAW 1
 
@@ -35,9 +37,7 @@ public:
 	}
 
 	void shuffleMatches() {
-		random_device rd;
-		mt19937 g(rd());
-		shuffle(begin(matches), end(matches), g);
+		mt_shuffle(begin(matches), end(matches));
 	}
 
 	bool isCompleted() const {

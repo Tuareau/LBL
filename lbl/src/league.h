@@ -3,10 +3,12 @@
 #include "tournament.h"
 #include "table.h"
 #include "schedule.h"
+#include "tools.h"
 
 #include <string>
 #include <sstream>
 #include <vector>
+
 
 using namespace std;
 
@@ -17,9 +19,9 @@ class League : public Tournament
 private:
 	vector<string> teams;
 	Table * table;
-	Schedule * shedule;
+	Schedule * schedule;
+	size_t legs;
 
-	void shuffleTeams();
 public:
 	League() = delete;
 	League(const League &) = delete;

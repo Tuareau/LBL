@@ -1,5 +1,4 @@
 #include <string>
-#include <memory>
 #include <iostream>
 
 #include "season.h"
@@ -19,27 +18,28 @@ int main()
 	LBL->fill();
 	LBL->init();
 	
-	while (LBL->is_actual()) {
+	while (true) {
 		cout << "\nChoice:\n";
 		cout << "1 - Shedule:\n";
 		cout << "2 - Table:\n";
-		cout << "3 - Play:\n";
-		cout << "4 - Quit\n";
-		int c;
+		if (LBL->is_actual()) 
+			cout << "3 - Play:\n";
+		cout << "q - Quit\n";
+		char c;
 		cin >> c;
 
 		system("cls");
 
-		if (c == 1) {
+		if (c == '1') {
 			LBL->showSchedule();
 		}
-		if (c == 2) {
+		if (c == '2') {
 			LBL->showTable();
 		}
-		if (c == 3) {
+		if (LBL->is_actual() && c == '3') {
 			LBL->runMatchday();
 		}
-		if (c == 4) {
+		if (c == 'q') {
 			break;
 		}
 
