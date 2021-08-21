@@ -56,10 +56,10 @@
     <ClInclude Include="src\schedule.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="src\matchday.h">
+    <ClInclude Include="src\tools.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="src\tools.h">
+    <ClInclude Include="src\matchday.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

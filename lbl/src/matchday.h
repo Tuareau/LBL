@@ -31,12 +31,12 @@ public:
 
 	explicit MatchDay(size_t matches_count);
 
-	inline void addMatch(match & m);
-	inline void shuffleMatches();
-	inline const vector<match> & getMatches() const;
+	void addMatch(match & m);
+	void shuffleMatches();
+	const vector<match> & getMatches() const;
 
-	inline bool isCompleted() const;
-	inline bool isEmpty() const;
+	bool isCompleted() const;
+	bool isEmpty() const;
 
 	void play();
 };
