@@ -6,6 +6,7 @@
 #include <random>
 #include <algorithm>
 #include <iomanip>
+#include <iostream>
 
 #include "tools.h"
 
@@ -28,41 +29,14 @@ public:
 	MatchDay(const MatchDay &) = default;
 	~MatchDay() {}
 
-	explicit MatchDay(size_t matches_count) {
-		matches.reserve(matches_count);
-		is_completed = false;
-	}
+	explicit MatchDay(size_t matches_count);
 
-	void addMatch(match & m) {
-		matches.push_back(m);
-	}
+	inline void addMatch(match & m);
+	inline void shuffleMatches();
+	inline const vector<match> & getMatches() const;
 
-	void shuffleMatches() {
-		mt_shuffle(begin(matches), end(matches));
-	}
+	inline bool isCompleted() const;
+	inline bool isEmpty() const;
 
-	bool isCompleted() const {
-		return is_completed;
-	}
-
-	bool isEmpty() const {
-		return matches.empty();
-	}
-
-	void play() {
-		for (auto & m : matches) {
-			auto & [team1, score1, team2, score2] = m;
-			cout << "Match: " << team1 << " : " << team2 << endl;
-			cout << "Score: ";
-			cin >> score1;
-			cin >> score2;
-			cout << endl;
-		}
-		is_completed = true;
-	}
-
-	const vector<match> & getMatches() const {
-		return matches;
-	}
-
+	void play();
 };

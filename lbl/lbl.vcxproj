@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="src\league.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\matchday.cpp" />
     <ClCompile Include="src\schedule.cpp" />
     <ClCompile Include="src\season.cpp" />
     <ClCompile Include="src\table.cpp" />
