@@ -1,6 +1,8 @@
 # LBL
 Light Ball League
 
+![Main Window Model](https://github.com/Tuareau/LBL/raw/develop/window_model.png)
+
 ## Description
 A small desktop application development project. The application will allow you to create three types of tournaments: league, a group tournament and a single-elimination tournament. Multi-user work will be available. All tournaments last for the seasons that the user goes through. The application will provide an overview of statistics, lists of tournaments and teams, possibly the history of championships.
 
