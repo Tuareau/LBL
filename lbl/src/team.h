@@ -29,6 +29,11 @@ struct increased_team_info {
 	double rating;
 };
 
+struct pos_info {
+	size_t points;
+	size_t position;
+};
+
 class Team
 {
 private:

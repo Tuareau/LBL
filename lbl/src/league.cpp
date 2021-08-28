@@ -2,42 +2,37 @@
 
 void League::set() {
 	Tournament::set();
-	legs = 3; // INPUT 
+	_legs = 2; // INPUT 
 }
 
 void League::fill() {
-	const auto n{ Tournament::participants() };
-	this->teams.reserve(n);
+	const auto n { Tournament::participants() };
+	_teams.reserve(n);
 
 	stringstream sstr;
-	string default_name;
 	for (auto i = size_t(0); i < n; i++) { // INPUT
 		sstr << "Team #" << i + 1;
-		default_name = sstr.str();
-		this->teams.push_back(default_name);
-		sstr.str(std::string());
-		default_name.clear();
+		_teams.emplace_back(sstr.str());
+		sstr.str(string());
 	}
 }
 
 void League::init() {
-	this->table = new LeagueTable(this->teams);
-	this->schedule = new LeagueSchedule(this->teams, this->legs);
+	_table = new LeagueTable(_teams);
+	_schedule = new LeagueSchedule(_teams, _legs);
 }
 
 void League::runMatchday() {
-	const MatchDay & curr_mday{ schedule->playMatchday() };
-	table->handleMatchday(curr_mday);
-	if (schedule->isCompleted())
-		Tournament::set_actual(false);
+	const MatchDay & curr_mday { _schedule->playMatchday() };
+	_table->handleMatchday(curr_mday);
+	if (_schedule->isCompleted())
+		Tournament::setActual(false);
 }
 
-void League::showSchedule() const
-{
-	schedule->draw();
+void League::showSchedule() const {
+	_schedule->draw();
 }
 
-void League::showTable() const
-{
-	table->draw();
+void League::showTable() const {
+	_table->draw();
 }

@@ -9,7 +9,6 @@
 #include <sstream>
 #include <vector>
 
-
 using namespace std;
 
 #define WIN_POINTS 3
@@ -17,10 +16,10 @@ using namespace std;
 class League : public Tournament
 {
 private:
-	vector<string> teams;
-	Table * table;
-	Schedule * schedule;
-	size_t legs;
+	vector<string> _teams;
+	Table * _table;
+	Schedule * _schedule;
+	size_t _legs;
 
 public:
 	League() = delete;
@@ -34,7 +33,7 @@ public:
 	void init() override;
 	
 	void runMatchday() override;
+
 	void showSchedule() const;
 	void showTable() const;
-
 };

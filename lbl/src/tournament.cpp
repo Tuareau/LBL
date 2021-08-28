@@ -1,34 +1,34 @@
 #include "tournament.h"
 
 Tournament::Tournament(Season * season) {
-	this->season = season;
-	this->season->addTournament(this);
+	_season = season;
+	_season->addTournament(this);
 	this->set();
 }
 
 const string Tournament::name() const {
-	return information.name;
+	return _information.name;
 }
 
 const tournament_type Tournament::type() const {
-	return information.ttype;
+	return _information.ttype;
 }
 
 const size_t Tournament::participants() const {
-	return information.participants;
+	return _information.participants;
 }
 
-bool Tournament::is_actual() const {
-	return information.is_actual;
+bool Tournament::isActual() const {
+	return _information.is_actual;
 }
 
-void Tournament::set_actual(bool is_actual) {
-	information.is_actual = is_actual;
+void Tournament::setActual(bool is_actual) {
+	_information.is_actual = is_actual;
 }
 
 void Tournament::set() { // INPUT
-	information.name = string{ "LBL" };
-	information.participants = 3;
-	information.ttype = tournament_type::LEAGUE;
-	information.is_actual = true;
+	_information.name = string{ "LBL" };
+	_information.participants = 4;
+	_information.ttype = tournament_type::LEAGUE;
+	_information.is_actual = true;
 }

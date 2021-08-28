@@ -22,7 +22,7 @@ int main()
 		cout << "\nChoice:\n";
 		cout << "1 - Shedule:\n";
 		cout << "2 - Table:\n";
-		if (LBL->is_actual()) 
+		if (LBL->isActual()) 
 			cout << "3 - Play:\n";
 		cout << "q - Quit\n";
 		char c;
@@ -36,7 +36,7 @@ int main()
 		if (c == '2') {
 			LBL->showTable();
 		}
-		if (LBL->is_actual() && c == '3') {
+		if (LBL->isActual() && c == '3') {
 			LBL->runMatchday();
 		}
 		if (c == 'q') {

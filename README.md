@@ -7,7 +7,7 @@ Light Ball League
 A small desktop application development project. The application will allow you to create three types of tournaments: league, a group tournament and a single-elimination tournament. Multi-user work will be available. All tournaments last for the seasons that the user goes through. The application will provide an overview of statistics, lists of tournaments and teams, possibly the history of championships.
 
 ## Tools
-We use C++1x/STL, Qt and MS Visual Studio.
+We use C++17/STL, Qt and MS Visual Studio.
 
 ## Classes model
 While searching for a team and studying Qt, the developers are writing a small kernel. It implements a simple model of the class hierarchy:

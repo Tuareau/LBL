@@ -20,11 +20,11 @@ class Season;
 class Tournament
 {
 private:
-	tournament_info information;
-	Season * season;
+	tournament_info _information;
+	Season * _season;
 
 protected:
-	void set_actual(bool);
+	void setActual(bool);
 
 public:
 	Tournament() = delete;
@@ -35,7 +35,7 @@ public:
 	const string name() const;
 	const tournament_type type() const;
 	const size_t participants() const;
-	bool is_actual() const;
+	bool isActual() const;
 
 	virtual void set() = 0;
 	virtual void fill() = 0;

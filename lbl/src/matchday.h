@@ -21,11 +21,11 @@ using match = tuple<string, size_t, string, size_t>;
 class MatchDay
 {
 private:
-	vector<match> matches;
-	bool is_completed;
+	vector<match> _matches;
+	bool _is_completed;
 
 public:
-	MatchDay() : is_completed(true) {}
+	MatchDay() : _is_completed(true) {}
 	MatchDay(const MatchDay &) = default;
 	~MatchDay() {}
 
