@@ -1,0 +1,31 @@
+MainWindow {
+	background: rgb(59, 56, 56);
+}
+
+QPushButton {
+    border: 0px;
+    border-radius: 2px;
+    background-color: rgb(118, 113, 113);
+	color: rgb(208, 206, 206);
+    min-width: 80px;
+	min-heigh: 28px;
+	max-width: 80px;
+	max-heigh: 28px;
+}
+
+QPushButton#file_button {
+	background-color: rgb(218, 119, 38);
+}
+
+QPushButton#file_button:hover {
+	background-color: black;
+	color: white;
+}
+
+QPushButton:pressed {
+    background-color: black;
+}
+
+QPushButton:flat {
+    border: none;
+}

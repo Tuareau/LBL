@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/mainwindow">
+        <file>app.qss</file>
+        <file>fonts/Segoe UI Bold Italic.ttf</file>
+        <file>fonts/Segoe UI Bold.ttf</file>
+        <file>fonts/Segoe UI Italic.ttf</file>
+        <file>fonts/Segoe UI.ttf</file>
+    </qresource>
+</RCC>
