@@ -17,8 +17,8 @@ private:
     Ui::MainWindowClass ui;
 	QApplication * _app;
 
-	const QLayout * makeTitleBar();
-	const QLayout * makeMenuBar();
-	const QLayout * makeCentralWidget();
-	const QLayout * makeStatusBar();
+	QLayout * makeTitleBar();
+	QLayout * makeMenuBar();
+	QLayout * makeCentralWidget();
+	QLayout * makeStatusBar();
 };

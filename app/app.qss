@@ -11,6 +11,7 @@ QPushButton {
 	min-heigh: 28px;
 	max-width: 80px;
 	max-heigh: 28px;
+	margin: 0px;
 }
 
 QPushButton#file_button {
