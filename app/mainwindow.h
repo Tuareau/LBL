@@ -3,6 +3,7 @@
 #include <QtWidgets/QWidget>
 #include <QStyleOption>
 #include <QPainter>
+#include <QLayout>
 #include "ui_mainwindow.h"
 
 class MainWindow : public QWidget
@@ -16,9 +17,10 @@ public:
 private:
     Ui::MainWindowClass ui;
 	QApplication * _app;
+	QVBoxLayout * _main_layout;
 
-	QLayout * makeTitleBar();
-	QLayout * makeMenuBar();
-	QLayout * makeCentralWidget();
-	QLayout * makeStatusBar();
+	QWidget * makeTitleBarWidget() const;
+	QWidget * makeMenuBarWidget() const;
+	QWidget * makeCentralWidgetWidget() const;
+	QWidget * makeStatusBarWidget() const;
 };

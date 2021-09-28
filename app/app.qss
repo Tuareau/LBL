@@ -2,31 +2,53 @@ MainWindow {
 	background: rgb(59, 56, 56);
 }
 
+QWidget {
+	background: rgb(59, 56, 56);
+}
+
 QPushButton {
     border: 0px;
     border-radius: 2px;
     background-color: rgb(118, 113, 113);
 	color: rgb(208, 206, 206);
     min-width: 80px;
-	min-heigh: 28px;
+	min-height: 28px;
 	max-width: 80px;
-	max-heigh: 28px;
+	max-height: 28px;
 	margin: 0px;
 }
 
-QPushButton#file_button {
+QPushButton#file_button:hover {
 	background-color: rgb(218, 119, 38);
 }
 
-QPushButton#file_button:hover {
-	background-color: black;
-	color: white;
+QPushButton#file_button {
+	background-color: rgb(210, 105, 30);
 }
 
-QPushButton:pressed {
-    background-color: black;
+QPushButton#upper_button:hover {
+	background-color: rgb(143, 139, 139);
+}
+
+QPushButton#upper_button:pressed {
+    background-color: rgb(143, 139, 139);
 }
 
 QPushButton:flat {
     border: none;
+}
+
+QWidget#menu_widget {
+	min-height: 28px;
+	max-height: 28px; 
+}
+
+QWidget#status_bar {
+	background-color: black;
+}
+
+QLabel#status_bar_label {
+	font-size: 11px;
+	color: white;
+	padding: 2px;
 }
